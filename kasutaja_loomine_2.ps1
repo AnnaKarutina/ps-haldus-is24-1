@@ -1,9 +1,13 @@
-﻿param(
-    $username,
-    $fullname,
-    $description
-)
+﻿if($args.Count -ne 3) {
+    Write-Host -ForegroundColor Red '.\script username "Full Name" "Account description"'
+} else {
 
-$userPassword = ConvertTo-SecureString 'qwerty' -AsPlainText -Force
+    $username = $args[0]
+    $fullname = $args[1]
+    $description =$args[2]
 
-New-LocalUser $username -Password $userPassword -FullName $fullname -Description $description
+
+    $userPassword = ConvertTo-SecureString 'qwerty' -AsPlainText -Force
+
+    New-LocalUser $username -Password $userPassword -FullName $fullname -Description $description
+}
